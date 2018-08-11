@@ -1,0 +1,15 @@
+.shopping-list {
+  list-style: none;
+  .list-item {
+    border-top: 1px solid #eee;
+    &:last-child {
+      border-bottom: 1px solid #eee;
+    }
+  }
+  .shopping-item {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem 1.25rem;
+  }
+}
