@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import NestedRoute from './ReactRouter/quick-start.02.nested-router'
+import WelcomeDialog from './components/Composition/index'
 
-ReactDOM.render(<NestedRoute/>, document.getElementById('root'))
+ReactDOM.render(<WelcomeDialog />, document.getElementById('root'))
 registerServiceWorker()
