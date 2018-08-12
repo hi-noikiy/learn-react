@@ -1,8 +1,13 @@
-body {
+* {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-.btn {
-  cursor: pointer;
-}
+  padding: 0; }
+
+ul, li {
+  list-style: none; }
+
+button, img, a {
+  outline: none; }
+
+button, .btn, a {
+  border: none;
+  cursor: pointer; }

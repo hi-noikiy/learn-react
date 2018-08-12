@@ -2,13 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import ShoppingList from './components/ShoppingList/index';
+import NestedRoute from './ReactRouter/quick-start.02.nested-router'
 
-const myShopingList = [
-  {name: 'sugar', amount: 100},
-  {name: 'oil', amount: 100},
-  {name: 'onion', amount: 100},
-]
-
-ReactDOM.render(<ShoppingList items={myShopingList}/>, document.getElementById('root'))
+ReactDOM.render(<NestedRoute/>, document.getElementById('root'))
 registerServiceWorker()

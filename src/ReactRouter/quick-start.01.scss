@@ -1,0 +1,6 @@
+.router-link {
+  display: inline-block;
+  &.active {
+    color: green;
+  }
+}
