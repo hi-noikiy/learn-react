@@ -1,0 +1,29 @@
+.form {
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  input, textarea, ::-webkit-inner-spin-button {
+    outline: none;
+  }
+  .label {
+    display: block;
+    margin-bottom: .75rem;
+  }
+  input[type="text"], input[type="email"], textarea {
+    display: inline-block;
+    padding: .5rem 0 .5rem 1rem;
+    border: 1px solid #eee;
+    &:focus {
+      border: 1px solid #42b983;
+    }
+  }
+  button[type="submit"] {
+    padding: 0.5rem 1.75rem;
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    font-weight: bolder;
+    &:hover {
+      border-color: #42b983;
+    }
+  }
+}

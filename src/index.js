@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import WelcomeDialog from './components/Composition/index'
+import App from './MyRedux/01.MiniExample/'
 
-ReactDOM.render(<WelcomeDialog />, document.getElementById('root'))
+import './common.css'
+import './index.css'
+
+ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()
