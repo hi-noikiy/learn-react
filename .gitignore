@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/src/components/**/*.css
+*.css
 
 # testing
 /coverage
