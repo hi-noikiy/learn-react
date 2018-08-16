@@ -1,0 +1,14 @@
+.Posts-wrapper {
+  .title {
+    padding: 1rem 0;
+  }
+  .Posts-list {
+    li {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+      @media screen and (min-width: 46rem) {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}
