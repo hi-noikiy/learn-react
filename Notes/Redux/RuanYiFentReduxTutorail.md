@@ -205,3 +205,74 @@ const combineReducers = reducers => {
 [working flow of redux](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg)
 
 Counter, an example of redux.
+
+```javascript
+import React, { Component } from 'react'
+import { createStore } from 'redux'
+import  './index.css'
+
+const Counter = ({value, onIncrement, onDecrement}) => (
+  <div className="Counter">
+    <h1 className="value">{value}</h1>
+    <div className="button-group">
+      <button className="btn" onClick={onIncrement}>+</button>
+      <button className="btn" onClick={onDecrement}>-</button>
+    </div>
+  </div>
+)
+
+// reduers, which return a new state
+const reducers = (state = 0, action) => {
+  switch(action.type) {
+    case 'INCREMENT': return state + 1
+    case 'DECREMENT': return state - 1
+    default: return state
+  }
+}
+
+// create a store with reducer as params
+export const store = createStore(reducers)
+
+export default class App extends Component {
+  // store.getState , get the state from store
+  render() {
+    return (
+      <div className="App">
+        <Counter
+          value={store.getState()}
+          onIncrement={() => {
+            store.dispatch({
+              type: 'INCREMENT'
+            })
+          }}
+
+          onDecrement={
+            () => {
+              // dispatch an action to change the sate of app
+              store.dispatch({
+                type: 'DECREMENT'
+              })
+            }
+          }
+        ></Counter>
+      </div>
+    )
+  }
+}
+```
+
+Subscribe state change:
+
+```javascript
+import App form './components/Counter'
+import { store } from './components/Counter'
+
+const render = () => {
+  ReactDOM.render(<App/>, document.getElementById('root'))
+}
+// render
+render()
+
+// subscribe change to state. So whenever there is a change, render excutes automatically.
+store.subscribe(render)
+```

@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import App from './MyRedux/01.MiniExample/'
+import App from './redux/counter/'
+import { store } from './redux/counter'
 
-import './common.css'
 import './index.css'
+import './common.css'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const render = () => {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+
+render ()
+store.subscribe(render)
+
 registerServiceWorker()

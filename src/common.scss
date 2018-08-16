@@ -1,5 +1,8 @@
 @import './form.scss';
 
 button, .btn {
+  display: inline-block;
   cursor: pointer;
+  min-width: 48px;
+  border: 1px solid #eee;
 }
