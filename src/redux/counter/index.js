@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { createLogger } from 'redux-logger'
+
 import  './index.css'
+
+const logger = createLogger()
+const initialState = 0
+
 
 const Counter = ({value, onIncrement, onDecrement}) => (
   <div className="Counter">
@@ -12,7 +18,7 @@ const Counter = ({value, onIncrement, onDecrement}) => (
   </div>
 )
 
-const reducers = (state = 0, action) => {
+const reducers = (state = initialState, action) => {
   switch(action.type) {
     case 'INCREMENT': return state + 1
     case 'DECREMENT': return state - 1
@@ -20,7 +26,7 @@ const reducers = (state = 0, action) => {
   }
 }
 
-export const store = createStore(reducers)
+export const store = createStore(reducers, initialState, applyMiddleware(logger))
 
 export default class App extends Component {
   render() {
