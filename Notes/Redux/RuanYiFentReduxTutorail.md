@@ -276,3 +276,92 @@ render()
 // subscribe change to state. So whenever there is a change, render excutes automatically.
 store.subscribe(render)
 ```
+
+## Redux middleware and async operation
+
+An example of middleware's solution:
+
+```javascript
+let next = store.dispatch
+store.dispatch = dispatchAndLog(action) {
+  console.log('dispatching', action)
+  next(action)
+  console.log('next state', store.getState())
+}
+```
+
+### Redux middleware
+
+```javascript
+import { applyMiddleWare, createStore } from 'redux'
+import { createLogger } from 'redux-logger'
+
+const logger = createLogger()
+const store = createStore(
+  reducer,
+  // initialState,
+  applyMiddleWare(logger)
+)
+```
+
+#### what applyMiddleware is about
+
+```javascript
+export default function applyMiddleware(...middlewares) {
+  return (createStore) => (reducer, preloadedState, enhancer) => {
+    var store = createStore(reducer, preloadedState, enhancer);
+    var dispatch = store.dispatch;
+    var chain = [];
+
+    var middlewareAPI = {
+      getState: store.getState,
+      dispatch: (action) => dispatch(action)
+    };
+    chain = middlewares.map(middleware => middleware(middlewareAPI));
+    dispatch = compose(...chain)(store.dispatch);
+
+    return {...store, dispatch}
+  }
+}
+```
+
+### thinking in async operation of redux
+
+#### redux-thunk
+
+## React-Redux
+
+There are two types of components for **React-Redux**. The first one is  **UI** component, the second one is **container** component.
+
+There are several features for **UI** components:
+
+- Responsible for UI rendering, not responsible for any bussiness logical.
+
+- No state(there is no this.state)
+
+- All the datas come from this.props
+
+- do not use any API of Redux
+
+Here is an example of UI component.
+
+```javascript
+const Title = value => <h1 className="title"> {value} <h1>
+```
+
+As there is no state for **Title** component, and its state depends on the param, so it's similar to a pure function.
+
+### Container component
+
+In contrast to **UI** component, the features for **container** component are:
+
+- Responsible for manage data and bussiness logical not responsible for UI rendering.
+
+- Has innner state
+
+- Using Redux API
+
+In summary, **UI** component is in charge of **UI redenring**, **container** component is in charger of **data handling and  bussiness logical**.
+
+What if a component both has UI and bussiness logical? The solution is, split it into the following structure: the outside is a
+**container** component, the inner is a **UI** component. The outside component is incharge of communicatio and passing data to **UI** component, which renders the view.
