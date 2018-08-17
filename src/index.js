@@ -4,8 +4,8 @@ import registerServiceWorker from './registerServiceWorker'
 import App from './redux/counter/'
 import { store } from './redux/counter'
 
-import './index.css'
-import './common.css'
+import './assets/style/common.css'
+import './assets/style/index.css'
 
 const render = () => {
   ReactDOM.render(<App />, document.getElementById('root'))
