@@ -365,3 +365,108 @@ In summary, **UI** component is in charge of **UI redenring**, **container** com
 
 What if a component both has UI and bussiness logical? The solution is, split it into the following structure: the outside is a
 **container** component, the inner is a **UI** component. The outside component is incharge of communicatio and passing data to **UI** component, which renders the view.
+
+### connect
+
+**React-Redux** provides a **connect** method for generating **container** component from **UI** component.
+
+The complete API from **connect** function is:
+
+```javascript
+import { connect } from 'react-redux'
+
+const containerComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(uiComponent)
+
+function mapStateToProps (state)  {
+  return {
+    count: state.count
+  }
+}
+
+function mapDispatchToProps (dispatch, ownProps = {}) {
+  return {
+    onIncreaseClick: () => {
+      dispatch({
+        type: 'INCREMENT',
+        playload: 10
+      })
+    }
+  }
+}
+
+```
+
+#### mapStateToProps
+
+**mapStateToProps** is a function, which builds a map from external state  object to the  props of a **uiCompnnent**. It returns a object, like its name describes, the returned object maps state's props to **UI-component**s' param **props**.
+
+#### mapDispatchToProps
+
+**mapDispatchToProps**, the second params of **connect** funciton, it defines which user operation should be treated as action and pass the action to the store of redux app.
+
+### Provider component
+
+**React-Redux** provides a componnent called **Provider**, which helps **container component**  to get **state**.
+
+```javascript
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers'
+import App from './components/App'
+
+let store = createStore(todoApp);
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+
+In above example, as **Provider** wraps **App** component, so all the sub-component of **App** component can access **store** by default.
+
+The principle for **Provider** is similar to **Context** property, here is the source code:
+
+```javascript
+class Provider extends Component {
+  getChildContext() {
+    return {
+      store: this.props.store
+    };
+  }
+  render() {
+    return this.props.children;
+  }
+}
+
+Provider.childContextTypes = {
+  store: React.PropTypes.object
+}
+```
+
+As **store** is a props of **context**, so the child-component can access **store**. Here is a sample code:
+
+```javascript
+class VisibleTodoList extends Component {
+  componentDidMount() {
+    const { store } = this.context;
+    this.unsubscribe = store.subscribe(() =>
+      this.forceUpdate()
+    );
+  }
+
+  render() {
+    const props = this.props;
+    const { store } = this.context;
+    const state = store.getState();
+  }
+}
+
+VisibleTodoList.contextTypes = {
+  store: React.PropTypes.object
+}
+```
