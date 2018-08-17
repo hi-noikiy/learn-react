@@ -1,56 +1,59 @@
-import React, { Component } from 'react'
-import { createStore, applyMiddleware } from 'redux'
-import { createLogger } from 'redux-logger'
+import React from 'react'
+import { connect } from 'react-redux'
 
 import  './index.css'
 
-const logger = createLogger()
-const initialState = 0
-
-
-const Counter = ({value, onIncrement, onDecrement}) => (
+const Counter = ({count, onIncreaseClick, onDecreaseClick}) => (
   <div className="Counter">
-    <h1 className="value">{value}</h1>
+    <h1 className="value">{count}</h1>
     <div className="button-group">
-      <button className="btn" onClick={onIncrement}>+</button>
-      <button className="btn" onClick={onDecrement}>-</button>
+      <button className="btn" onClick={onIncreaseClick}>+1</button>
+      <button className="btn" onClick={onDecreaseClick}>-1</button>
     </div>
   </div>
 )
 
-const reducers = (state = initialState, action) => {
-  switch(action.type) {
-    case 'INCREMENT': return state + 1
-    case 'DECREMENT': return state - 1
+export const reducers = (state= {count: 0}, {type, playload}) => {
+  switch(type) {
+    case 'INCREMENT': 
+      return Object.assign({
+        count: state.count + playload
+      })
+    case 'DECREMENT': 
+      return Object.assign({
+        count: state.count + playload
+      })
     default: return state
   }
 }
 
-export const store = createStore(reducers, initialState, applyMiddleware(logger))
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Counter
-          value={store.getState()}
-          onIncrement={() => {
-            console.log(store.getState())
-            store.dispatch({
-              type: 'INCREMENT'
-            })
-          }}
-
-          onDecrement={
-            () => {
-              console.log(store.getState())
-              store.dispatch({
-                type: 'DECREMENT'
-              })
-            }
-          }
-        ></Counter>
-      </div>
-    )
+function mapStateToProps (state) {
+  return {
+    count: state.count
   }
 }
+
+function mapDispatchToProps (dispatch) {
+  return {
+    onIncreaseClick: () => {
+      dispatch({
+        type: 'INCREMENT',
+        playload: 1
+      })
+    },
+    onDecreaseClick: () => {
+      dispatch({
+        type: 'DECREMENT',
+        playload: 1
+      })
+    }
+  }
+}
+
+
+export const App =  connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter)
+
