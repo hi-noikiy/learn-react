@@ -48,7 +48,7 @@ const store = createStore(reducer)
 
 - subscribe(listener)
 
-[redux store](./includes/img/01.about_store.png)
+<img src="../../includes/img/01.about_store.png" alt="redux store" width="400">
 
 ### action
 
