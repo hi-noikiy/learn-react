@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 *.css
+todo.*
 
 # testing
 /coverage
