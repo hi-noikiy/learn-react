@@ -4,7 +4,7 @@
 
 ### Notes
 
-- Notes: [RuanYiFentReduxTutorail](./RuanYiFentReduxTutorail.md)
+- Notes: [RuanYiFentReduxTutorail](./includes/markdown/RuanYiFentReduxTutorail.md)
 
 - Notes's reference:
 
@@ -18,3 +18,7 @@
 
 - 1.[Counter](../../src/redux/counter)
 - 2.[Blog](../../src/redux/blog) and its tutorail: https://www.youtube.com/watch?v=93p3LxR9xfM&t=1168s
+
+## Redux Official document Notes
+
+## GeekBang, redux course serise
