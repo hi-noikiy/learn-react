@@ -4,11 +4,11 @@
 
 ## Core Concepts
 
-state. Change state by dispatching an action.
+### State.
 
-To tie state and actions togther, we write a function called a reducer. Reducer takes state and actions as argument, and return the next state of the app.
+**The only way to change the state is to emit an action, an object describing what happened.**
 
-A possible model for an app:
+A possible state for an app:
 
 ```javascript
 {
@@ -33,17 +33,56 @@ Possible actions for an App
 { type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_ALL' }
 ```
 
-## Three Principles
+To tie state and actions togther, we write a **pure function** called a reducer. Reducer takes state and actions as argument, and return the next state of the app.
+
+```javascript
+function reducer(state = {}, action) {
+  let { type, playload } = action
+  switch (type) {
+    case 'ADD_TODO':
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          playload
+        ]
+      }
+    default:
+      return state
+  }
+}
+```
+
+## Three Principles of Redux
+
+Redux can be described in three fundamental principles.
 
 ### Single source of truth
 
+**The state of your whole application is stored in an object tree within a single store.**
+
 ### State is read-only
 
+**The only way to change the state is to emit an action, an object describing what happened.**.
+
 ### Changes are made with pure functions
+
+**To specify how the state tree is transformed by actions, you write pure reducers.**
+Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to return new state objects, instead of mutating the previous state.
 
 ## Prior Art
 
 ### Flux
+
+More introductions and tutorials about Flux, please refer to:
+
+- 1. quick start: http://www.ruanyifeng.com/blog/2016/01/flux.html
+
+- 2. official document: https://facebook.github.io/flux/docs/overview.html
+
+- 3. introduction video: https://www.youtube.com/watch?v=nYkdrAPrdcw&t=561s
+
+- 4. Notes: [Flux Note](./Flux.md)
 
 ### Immutable
 
