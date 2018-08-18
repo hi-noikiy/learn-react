@@ -4,10 +4,11 @@ import { PropTypes } from 'prop-types'
 import './Post.css'
 
 const Post =  (props) => {
-  let { title, content } = props
+  let { title = `I'm a title`, content = `I'm post content`, id } = props
+  let postTitle = `${id}. ${title}`
   return (
     <div className="Post">
-      <h4 className="Post-title"> {title} </h4>
+      <h4 className="Post-title"> {postTitle} </h4>
       <div className="Post-content">
         <p>{content}</p>
       </div>
@@ -17,7 +18,6 @@ const Post =  (props) => {
 
 Post.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
 }
-
 export default Post
