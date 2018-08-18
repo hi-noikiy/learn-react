@@ -15,11 +15,11 @@ Abstract common state to a store object. As components communicate with store to
 **Only action can change the state of App.**
 
 ```javascript
-function reducer (state = {count: 0}, {type, playload}) {
+function reducer (state = {count: 0}, {type, payload}) {
   case 'INCREASE':
     return {
       ...state,
-      count: state.count + playload
+      count: state.count + payload
     }
   default:
     return state

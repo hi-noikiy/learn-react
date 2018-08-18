@@ -7,13 +7,13 @@ export const fetchPosts = () => {
       .then(({data}) => {
         dispatch({
           type: 'FETCH_POSTS',
-          playload: data
+          payload: data
         })
       })
       .catch( e => {
         dispatch({
           type: 'FETCH_POSTS',
-          playload: []
+          payload: []
         })
       })
   }
@@ -30,14 +30,14 @@ export const createPost  = (post) => (dispatch) => {
     .then( ({data}) => {
       dispatch({
         type: 'NEW_POST',
-        playload: data
+        payload: data
       })
     })
     .catch(e => {
       console.log(`get: https://jsonplaceholder.typicode.com/posts`)
       dispatch({
         type: 'NEW_POST',
-        playload: {}
+        payload: {}
       })
     })
 }

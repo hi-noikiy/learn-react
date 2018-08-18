@@ -1,14 +1,14 @@
-export default function reducers (state = {posts: [], newPost:{}}, {type, playload}) {
+export default function reducers (state = {posts: [], newPost:{}}, {type, payload}) {
   switch (type) {
     case 'FETCH_POSTS':
       return {
         ...state,
-        posts: playload
+        posts: payload
       }
     case 'NEW_POST':
       return {
         ...state,
-        posts: [playload, ...state.posts]
+        posts: [payload, ...state.posts]
       }
     default:
       return state

@@ -13,15 +13,15 @@ const Counter = ({count, onIncreaseClick, onDecreaseClick}) => (
   </div>
 )
 
-export const reducers = (state= {count: 0}, {type, playload}) => {
+export const reducers = (state= {count: 0}, {type, payload}) => {
   switch(type) {
     case 'INCREMENT': 
       return Object.assign({
-        count: state.count + playload
+        count: state.count + payload
       })
     case 'DECREMENT': 
       return Object.assign({
-        count: state.count + playload
+        count: state.count + payload
       })
     default: return state
   }
@@ -39,13 +39,13 @@ function mapDispatchToProps (dispatch) {
     onIncreaseClick: () => {
       dispatch({
         type: 'INCREMENT',
-        playload: 1
+        payload: 1
       })
     },
     onDecreaseClick: () => {
       dispatch({
         type: 'DECREMENT',
-        playload: 1
+        payload: 1
       })
     }
   }

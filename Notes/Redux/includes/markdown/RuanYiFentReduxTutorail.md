@@ -391,7 +391,7 @@ function mapDispatchToProps (dispatch, ownProps = {}) {
     onIncreaseClick: () => {
       dispatch({
         type: 'INCREMENT',
-        playload: 10
+        payload: 10
       })
     }
   }

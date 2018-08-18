@@ -37,14 +37,14 @@ To tie state and actions togther, we write a **pure function** called a reducer.
 
 ```javascript
 function reducer(state = {}, action) {
-  let { type, playload } = action
+  let { type, payload } = action
   switch (type) {
     case 'ADD_TODO':
       return {
         ...state,
         todos: [
           ...state.todos,
-          playload
+          payload
         ]
       }
     default:
@@ -100,7 +100,7 @@ More introductions and tutorials about Flux, please refer to:
 
 #### How an Action looks like(the boilerplate of an action)
 
-**Actions** are playloads of information that send data from your application to your store. They are the only source of information for the store.
+**Actions** are payloads of information that send data from your application to your store. They are the only source of information for the store.
 You sned them to the store usign ***store.dispatch()**.
 
 An example action which represents adding a new todo item:
