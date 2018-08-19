@@ -76,13 +76,13 @@ Reducers are just pure functions that take the previous state and an action, and
 
 More introductions and tutorials about Flux, please refer to:
 
-- 1. quick start: http://www.ruanyifeng.com/blog/2016/01/flux.html
+-1. quick start: http://www.ruanyifeng.com/blog/2016/01/flux.html
 
-- 2. official document: https://facebook.github.io/flux/docs/overview.html
+-2. official document: https://facebook.github.io/flux/docs/overview.html
 
-- 3. introduction video: https://www.youtube.com/watch?v=nYkdrAPrdcw&t=561s
+-3. introduction video: https://www.youtube.com/watch?v=nYkdrAPrdcw&t=561s
 
-- 4. Notes: [Flux Note](./Flux.md)
+-4. Notes: [Flux Note](./Flux.md)
 
 ### Immutable
 
@@ -227,7 +227,7 @@ Return a new state instead of write directly to state of its filed.
 
 ```javascript
 import { comebindReducer } from 'redux'
-import * as reducers from './reducers
+import * as reducers from './reducers'
 export default comebindReducer(reducers)
 ```
 
@@ -277,4 +277,19 @@ The data lifecycle in any Redux app follows these 4 steps:
 
 - **The root reducer may combine the output of multiple reducers into a single state tree.**
 
-- The Redux store saves the complete state tree returned by the root reducer.
+- **The Redux store saves the complete state tree returned by the root reducer.**
+
+### Usage with React
+
+From the very beginning, we need to stress that Redux has no relation to React.
+
+React bindings for Redux embrace the idea of **separating presentational and container components.**. An introduction about 
+**presentational and container components** is here: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0.
+
+The  comparasion for **presentation component** and **container component** is:
+
+<img src="../../includes/img/04.UI_component_and_Container_component.png" alt="UI component Vs container component" width="800">
+
+**React Redux** has some performance optimaztion that are hard to do by hand.  Generally, we use **connect**, a function provided by **React-Redux**, to gennerate **container components**.
+
+#### Designing Component Hierarchy
