@@ -170,3 +170,111 @@ The reducer is a pure function that takes the previous state and an action, and 
 ```javascript
 (prevState, action) => newState
 ```
+
+## Basic
+
+### Basic: Actions
+
+**Actions** are payloads of informatin that send dat from your application to store. You send information by **store.dispatch**.
+
+#### Basic: ACtion Creators
+
+**Action creatros** are exactly that - functions that create actions. It's easy to conflate the terms "action" and "action creator".
+Here is an exmple of action creator:
+
+```javascript
+function addTodo(text) {
+  return {
+    type: ADD_TODO,
+    text
+  }
+}
+```
+
+In traditonal Flux, action creators often trigger a dispatch when invoked, like so:
+
+```javascript
+function addTodo(text) {
+  const action = {
+    type: ADD_TODO,
+    text
+  }
+  dispatch(acton)
+}
+```
+
+In Redux this is not the case.
+Instead, to actually initiate a dispatch, pass the result to the **dispatch()** function:
+
+```javascript
+dispatch(addTodo(text))
+dispatch(completeTodo(index))
+```
+
+Alternatively, you can create a bound action creator that automatically dispatches:
+
+```javascript
+const boundAddTodo = text => dispatch(addTodo(text))
+```
+
+### Basic:Reduers
+
+**Reducers** specify how the state updates when you dispatch actions.
+
+Return a new state instead of write directly to state of its filed.
+
+#### Splicing reducers
+
+```javascript
+import { comebindReducer } from 'redux'
+import * as reducers from './reducers
+export default comebindReducer(reducers)
+```
+
+### Basic: Store
+
+#### Create a store
+
+```javascript
+import { createStore } from 'redux'
+import todoApp from './reducers'
+const store = createStore(todoApp)
+```
+
+#### API of Store
+
+- store.getState()
+
+- store.dispatch(action)
+
+- store.subscribte(listener)
+
+Whenever there is a change to state, callback function for **store.subscribe** excutes automatically. Listener function can unsubscribe state change, here is an example:
+
+```javascript
+const store  = createStore(reducers)
+const callback = () => {
+  console.log(store.getState())
+}
+const unsubscribe = store.subscribe(callback)
+
+const $btn = document.getElementById('unBindBtn')
+
+$btn.addEventListener('click', () => {
+  unsubscribe
+}, false)
+```
+
+### Basic: Data Flow
+
+Redux architecture revolves around a **strict unidirectional data flow.**
+
+The data lifecycle in any Redux app follows these 4 steps:
+
+- You call **store.dispatch(action)**
+
+- **The Redux store calls the reducer function you gave it**
+
+- **The root reducer may combine the output of multiple reducers into a single state tree.**
+
+- The Redux store saves the complete state tree returned by the root reducer.
