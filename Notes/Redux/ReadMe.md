@@ -22,3 +22,7 @@
 ## Redux Official document Notes
 
 ## GeekBang, redux course serise
+
+## Redux and its plugins source code explore
+
+[Redux Source Code Reading](./includes/markdown/ReduxSourceCode.md)
