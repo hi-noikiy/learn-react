@@ -167,3 +167,48 @@ export default function applyMiddleware(...middlewares) {
   }
 }
 ```
+
+## middlewares
+
+A middleware of redux is a function, which is a transformation of *store.dispatch*. It would do something before dispatch an action and call reducers.
+
+Take a logger as an example:
+
+```javascript
+store.dispatch(addTodo('Use Redux'))
+```
+
+To log the action and state, you can change it to something like this:
+
+- attempt 1
+
+```javascript
+const action = addTodo('Use Redux')
+console.log('dispatching', action)
+store.dispatch(action)
+console.log('next state is', store.getState())
+```
+
+- attempt 2
+
+We can extract logging into a function:
+
+```javascript
+function dispatchAndLog(store, action) {
+  console.log('dispatching', action)
+  store.dispatch(action)
+  console.log('next state', store.getState())
+}
+```
+
+- atempt 3
+
+```javascript
+const next = store.dispatch
+store.dispatch = function dispatchAndLog(action)  => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state is', store.getState())
+  return result
+}
+```
