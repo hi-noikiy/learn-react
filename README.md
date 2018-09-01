@@ -4,6 +4,8 @@ About: my react learning path and notes
 
 ## configure of *create-react-app*
 
+- [Create React App](./Notes/React/CreateReactApp.md)
+
 ## React
 
 - [Notes for React](./Notes/React/ReadMe.md)
