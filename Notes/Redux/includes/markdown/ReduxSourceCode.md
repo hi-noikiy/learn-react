@@ -2,7 +2,7 @@
 
 ## source code structure
 
-<img src=""../img/05.ReduxSourceCodeStructure.png" alt="redux source code structure">
+<img src="../img/05.ReduxSourceCodeStructure.png" alt="redux source code structure">
 
 ## index.js
 
@@ -33,10 +33,47 @@ export {
 }
 ```
 
+A **store** is the core of a redux app, we can create a store object by:
+
+```javascript
+import { createStore, applyMidlewares } from 'redux'
+
+import reducers from './reducers'
+import middlewares from './middlwares'
+
+const initialState = {}
+export const store = createStore(reducers, initialState, applyMidlewares[...middlewares])
+```
+
+A store has the following properties:
+
+- dispatch: dispatch an action
+
+- subscribe: subscribe state change and callback listeners for state's change
+
+- getState: get current state of store
+
+- replaceReducers
+
+All these features for store comes from *createStore.js*. As the returned object for *createStore* function is
+
+```javascript
+return {
+  dispatch,
+  subscribe,
+  getState,
+  replaceReducer,
+  [$$observable]: observable
+}
+```
+
+Here is the source code and explanation of *createStore.js*:
+
 ## createStore.js
 
 ```javascript
 export default function createStore(reducer, preloadedState, enhancer) {
+  // preloadState can be a function
   if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
     enhancer = preloadedState
     preloadedState = undefined
@@ -46,7 +83,7 @@ export default function createStore(reducer, preloadedState, enhancer) {
     if (typeof enhancer !== 'function') {
       throw new Error('Expected the enhancer to be a function.')
     }
-
+    //an enhancer return a store with createStore
     return enhancer(createStore)(reducer, preloadedState)
   }
 
@@ -54,140 +91,9 @@ export default function createStore(reducer, preloadedState, enhancer) {
     throw new Error('Expected the reducer to be a function.')
   }
 
-  let currentReducer = reducer
-  let currentState = preloadedState
-  let currentListeners = []
-  let nextListeners = currentListeners
-  let isDispatching = false
-
-  function ensureCanMutateNextListeners() {
-    if (nextListeners === currentListeners) {
-      nextListeners = currentListeners.slice()
-    }
-  }
-
-  function getState() {
-    if (isDispatching) {
-      throw new Error(
-        'You may not call store.getState() while the reducer is executing. ' +
-          'The reducer has already received the state as an argument. ' +
-          'Pass it down from the top reducer instead of reading it from the store.'
-      )
-    }
-
-    return currentState
-  }
-
-  function subscribe(listener) {
-    if (typeof listener !== 'function') {
-      throw new Error('Expected the listener to be a function.')
-    }
-
-    if (isDispatching) {
-      throw new Error(
-        'You may not call store.subscribe() while the reducer is executing. ' +
-          'If you would like to be notified after the store has been updated, subscribe from a ' +
-          'component and invoke store.getState() in the callback to access the latest state. ' +
-          'See https://redux.js.org/api-reference/store#subscribe(listener) for more details.'
-      )
-    }
-
-    let isSubscribed = true
-
-    ensureCanMutateNextListeners()
-    nextListeners.push(listener)
-
-    return function unsubscribe() {
-      if (!isSubscribed) {
-        return
-      }
-
-      if (isDispatching) {
-        throw new Error(
-          'You may not unsubscribe from a store listener while the reducer is executing. ' +
-            'See https://redux.js.org/api-reference/store#subscribe(listener) for more details.'
-        )
-      }
-
-      isSubscribed = false
-
-      ensureCanMutateNextListeners()
-      const index = nextListeners.indexOf(listener)
-      nextListeners.splice(index, 1)
-    }
-  }
-
-  function dispatch(action) {
-    if (!isPlainObject(action)) {
-      throw new Error(
-        'Actions must be plain objects. ' +
-          'Use custom middleware for async actions.'
-      )
-    }
-
-    if (typeof action.type === 'undefined') {
-      throw new Error(
-        'Actions may not have an undefined "type" property. ' +
-          'Have you misspelled a constant?'
-      )
-    }
-
-    if (isDispatching) {
-      throw new Error('Reducers may not dispatch actions.')
-    }
-
-    try {
-      isDispatching = true
-      currentState = currentReducer(currentState, action)
-    } finally {
-      isDispatching = false
-    }
-
-    const listeners = (currentListeners = nextListeners)
-    for (let i = 0; i < listeners.length; i++) {
-      const listener = listeners[i]
-      listener()
-    }
-
-    return action
-  }
-
-  function replaceReducer(nextReducer) {
-    if (typeof nextReducer !== 'function') {
-      throw new Error('Expected the nextReducer to be a function.')
-    }
-
-    currentReducer = nextReducer
-    dispatch({ type: ActionTypes.REPLACE })
-  }
-
-  function observable() {
-    const outerSubscribe = subscribe
-    return {
-      subscribe(observer) {
-        if (typeof observer !== 'object' || observer === null) {
-          throw new TypeError('Expected the observer to be an object.')
-        }
-
-        function observeState() {
-          if (observer.next) {
-            observer.next(getState())
-          }
-        }
-
-        observeState()
-        const unsubscribe = outerSubscribe(observeState)
-        return { unsubscribe }
-      },
-
-      [$$observable]() {
-        return this
-      }
-    }
-  }
-
-  dispatch({ type: ActionTypes.INIT })
-
+  /*
+    some other codes
+  */
   return {
     dispatch,
     subscribe,
@@ -196,5 +102,68 @@ export default function createStore(reducer, preloadedState, enhancer) {
     [$$observable]: observable
   }
 }
+```
 
+Creating a store with enhancers, the redux-middlwares, needs the help of *applyMiddlewares*:
+
+```javascript
+const store = createStore(reducers, initialState, applyMiddlewares([...middlewares]))
+```
+
+The *createStore* function will excute:
+
+```javascript
+if (typeof enhancer !== 'undefined') {
+  if (typeof enhancer !== 'function') {
+    throw new Error('Expected the enhancer to be a function.')
+  }
+  //an enhancer return a store with createStore
+  return enhancer(createStore)(reducer, preloadedState)
+}
+
+if (typeof reducer !== 'function') {
+  throw new Error('Expected the reducer to be a function.')
+}
+```
+
+So how the enhancer looks like and how it return a similar object like:
+
+```javascript
+return {
+  dispatch,
+  subscribe,
+  getState,
+  replaceReducer,
+  [$$observable]: observable
+}
+```
+
+Let's dive in source code of *applyMiddleware*:
+
+```javascript
+import compose from './compose'
+
+export default function applyMiddleware(...middlewares) {
+  return createStore => (...args) => {
+    const store = createStore(...args)
+    let dispatch = () => {
+      throw new Error(
+        `Dispatching while constructing your middleware is not allowed. ` +
+          `Other middleware would not be applied to this dispatch.`
+      )
+    }
+
+    const middlewareAPI = {
+      getState: store.getState,
+      dispatch: (...args) => dispatch(...args)
+    }
+    const chain = middlewares.map(middleware => middleware(middlewareAPI))
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+}
 ```
