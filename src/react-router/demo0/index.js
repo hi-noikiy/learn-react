@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import React, { Component}  from 'react'
-import './quick-start.01.css'
+import './index.css'
 
 function Page (props) {
   return <div>{props.name}</div>

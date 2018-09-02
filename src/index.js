@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import App from './redux/counter'
+import App from './ReactRouter/demo01/index.js'
 
 
 import './assets/style/common.css'
