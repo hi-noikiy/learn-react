@@ -41,6 +41,10 @@ function User (route) {
 }
 
 class App extends Component {
+  componentDidMount () {
+    document.title = 'react-router:demo01'
+  }
+
   render () {
     return (
       <Router>
