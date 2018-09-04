@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import App from './redux/blog'
-
+import App from './examples/react/Layout'
 
 import './assets/style/common.css'
-import './assets/style/index.css'
 
 ReactDOM.render(
   <App></App>,

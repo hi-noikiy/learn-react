@@ -12,11 +12,11 @@ class ShoppingList extends Component {
         </li>
       )
     })
-
+    console.log(ListItems)
     return (
       <div className="shoping-list-wrapper">
         <ul className="shopping-list">
-          {ListItems}
+          {ListItems.length ? ListItems : <li>Shoping List is empty</li>}
         </ul>
       </div>
     )

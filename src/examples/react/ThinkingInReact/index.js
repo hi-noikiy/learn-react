@@ -107,7 +107,7 @@ const PRODUCTS = [
 export default class App extends React.Component {
   render () {
     return (
-      <div className="App">
+      <div className="FilterableProductTable-wrapper">
         <FilterableProductTable products={PRODUCTS}></FilterableProductTable>
       </div>
     ) 
