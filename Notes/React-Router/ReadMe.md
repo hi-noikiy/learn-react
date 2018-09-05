@@ -69,3 +69,19 @@ A **Route** without setting a **path** or been wrapped by a **Switch** component
 
 - strict
 - exact
+
+### 3. Link
+
+[https://reacttraining.com/react-router/web/api/Link](https://reacttraining.com/react-router/web/api/Link)
+
+### 4. NavLink
+
+[https://reacttraining.com/react-router/web/api/NavLink]([https://reacttraining.com/react-router/web/api/NavLink])
+
+### 5. Switch
+
+[https://reacttraining.com/react-router/web/api/Switch](https://reacttraining.com/react-router/web/api/Switch)
+
+### 6. Redirect
+
+[https://reacttraining.com/react-router/web/api/Redirect](https://reacttraining.com/react-router/web/api/Redirect)
