@@ -2,22 +2,26 @@
 
 ## Quick Start Guide
 
-### courses
+video courses:
 
 - https://time.geekbang.org/course/detail/100-11272
 
 - https://time.geekbang.org/course/detail/100-11273
 
-### Notes and code
+Quick view of **react-router** core concepts:
+[Basic concepts for quick start of **react-router**](./includes/01.QuickStart.md)
 
-#### Quick Start Notes
+## packages in **react-router**
 
-<a href='./Quick-Start.md'> React-Router quick start </a>
+**react-router v4** uses monorepo archetecture, it contains four packages:
 
-#### Core API
+- react-router, which is the core of React Router
+- react-router-dom, which is the DOM binding for React-Router
+- react-router-native, which is the React-Native binding for React-Router
+- react-router-config, which are Static route config helpers
 
-<a href='../../src/ReactRouter/quick-start.01.js'>Core API </a>
+Both **react-router-dom** and **react-router-native** use **react-router** as dependency.
 
-#### NestedRouter demo
+In most case, we use **react-router-dom** as we use react-router in browser enviroment.
 
-<a href='../../src/ReactRouter/quick-start.02.nested-router.js'>NestedRouter demo</a>
+##
