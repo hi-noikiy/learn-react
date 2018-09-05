@@ -28,7 +28,7 @@ In most case, we use **react-router-dom** as we use react-router in a browser en
 
 ### 1. [BrowserRouter](./includes/02.ComponentsInReactRouter.md#1-browserrouter)
 
-It keeps the consistency between  UI and URL of your app.
+A **Router** that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
 
 By default, a **BrowserRouter** component has the following properties:
 
@@ -58,6 +58,8 @@ The props of a component which is rendered  by **Route** has three following thr
 - match
 - location
 - history
+1. example:[examples/react-router/demo06/](../../src/examples/react-router/demo06/index.js)
+2. documents:  [https://github.com/ReactTraining/history](https://github.com/ReactTraining/history) and [https://reacttraining.com/react-router/web/api/Router/history-object](https://reacttraining.com/react-router/web/api/Router/history-object)
 
 A **Route** component has the following properties by default:
 
@@ -76,7 +78,7 @@ A **Route** without setting a **path** or been wrapped by a **Switch** component
 
 ### 4. NavLink
 
-[https://reacttraining.com/react-router/web/api/NavLink]([https://reacttraining.com/react-router/web/api/NavLink])
+[https://reacttraining.com/react-router/web/api/NavLink](https://reacttraining.com/react-router/web/api/NavLink)
 
 ### 5. Switch
 
