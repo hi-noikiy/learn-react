@@ -51,7 +51,7 @@ When user visits current page, *getUserConfirmation* will excute, a demo about t
 - keyLength: number
 - children
 
-### Route
+### 2. Route
 
 Route has three render methods, they are
 
@@ -73,3 +73,10 @@ Route also has three default properties comes from **props*, they are
 All the render methods of *Route** accepts these three properties.
 
 [examples/react-router/demo04](../../src/examples/react-router/demo04/index.js) is an example to both demostrate three render methods of **Route** component default props(match, history, location) passed to **Route**.
+
+- path: string
+
+Any path that could be resolve by [path-to-regexp](https://github.com/pillarjs/path-to-regexp)
+
+A **Route** without setting a **path** or been wrapped by **Switch** component, it will always be matched.
+Find an example, please click [examples/react-router/demo05](../../src/examples/react-router/demo05/index.js).
