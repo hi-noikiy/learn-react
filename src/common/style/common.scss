@@ -15,7 +15,10 @@ button, .btn {
   display: inline-block;
   cursor: pointer;
   min-width: 48px;
+  padding: 6px 8px;
   border: 1px solid #eee;
+  outline: none;
+  background-color: transparent;
 }
 
 .text-center {
@@ -38,6 +41,7 @@ strong {
 }
 .nav-link {
   text-decoration: underline;
+  color: #333333;
   &.nav-link-active {
     font-weight: 700;
   }
