@@ -1,6 +1,6 @@
 # React-Router
 
-## Quick Start Guide
+## 1. Quick Start Guide
 
 video courses:
 
@@ -11,7 +11,11 @@ video courses:
 Quick view of **react-router** core concepts:
 [Basic concepts for quick start of **react-router**](./includes/01.QuickStart.md)
 
-## packages in **react-router**
+## 2. demo index for this repo
+
+Please go to [demos and explains of react-router in this repo](./includes/03.demosAndExplains.md)
+
+## 3. packages in **react-router**
 
 **react-router v4** uses monorepo architecture, it contains four packages:
 
@@ -24,7 +28,7 @@ Both **react-router-dom** and **react-router-native** use **react-router** as a 
 
 In most case, we use **react-router-dom** as we use react-router in a browser enviroment.
 
-## components in **react-router**
+## 4. components in **react-router**
 
 ### 1. [BrowserRouter](./includes/02.ComponentsInReactRouter.md#1-browserrouter)
 
