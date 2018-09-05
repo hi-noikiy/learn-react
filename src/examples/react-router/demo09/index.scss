@@ -1,0 +1,33 @@
+.react-router.demo09 {
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+  .sidebar {
+    float: left;
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+    .nav-link {
+      color: blue;
+      text-transform: capitalize;
+      line-height: 44px;
+    }
+    .nav-link-active {
+      &::before {
+        content: '>';
+        padding-right: 2px;
+        display: inline;
+      }
+    }
+  }
+  .view {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    min-height: 200px;
+    font-size: 32px;
+  }
+}
