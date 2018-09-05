@@ -45,4 +45,31 @@ Please check [examples/react-router/demo03](../../src/examples/react-router/demo
 
 - getUserConfirmation
 
-When user visit current page, *getUserConfirmation* will excute, a demo about this property is [examples/react-router/demo03](../../src/examples/react-router/demo04/index.js)
+When user visits current page, *getUserConfirmation* will excute, a demo about this property is [examples/react-router/demo03](../../src/examples/react-router/demo04/index.js)
+
+- forceRefresh: bool
+- keyLength: number
+- children
+
+### Route
+
+Route has three render methods, they are
+
+```javascript
+import { Route } from 'react-router-dom'
+<Route component>
+<Route render>
+<Route children>
+```
+
+In most cases, you use *component* to render the component matched to a path.
+
+Route also has three default properties comes from **props*, they are
+
+- match
+- location
+- history
+
+All the render methods of *Route** accepts these three properties.
+
+[examples/react-router/demo04](../../src/examples/react-router/demo04/index.js) is an example to both demostrate three render methods of **Route** component default props(match, history, location) passed to **Route**.
