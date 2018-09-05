@@ -42,3 +42,7 @@ import { BrowserRouter } from 'react-router-dom'
 After setting *basename* for a **BrowserRouter** component, the href of a **Link** component under **BrowserRouter** start with */app*.
 
 Please check [examples/react-router/demo03](../../src/examples/react-router/demo03/index.js) to see the render result of *basename** effect.
+
+- getUserConfirmation
+
+When user visit current page, *getUserConfirmation* will excute, a demo about this property is [examples/react-router/demo03](../../src/examples/react-router/demo04/index.js)
