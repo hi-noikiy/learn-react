@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import App from './examples/react/08.advancedTabSelector'
+import App from './examples/react/03.Context'
 
 import './common/style/common.css'
 

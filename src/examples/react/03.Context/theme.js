@@ -1,11 +1,11 @@
 const  themes = {
   light: {
     foreground: '#000000',
-    background: '#eeeeee',
+    background: 'red',
   },
   dark: {
     foreground: '#ffffff',
-    background: '#222222',
+    background: 'green',
   }
 }
 
