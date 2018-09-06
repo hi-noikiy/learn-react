@@ -1,0 +1,17 @@
+.AdvancedTab-wrapper {
+  .tab-item {
+    display: inline-block;
+    margin-right: 20px;
+    .btn {
+      text-transform: capitalize;
+    }
+    &.selected {
+      .btn {
+        background: lightblue;
+      }
+    }
+  }
+  .AdvancedTab {
+    margin-top: 20px;
+  }
+}
