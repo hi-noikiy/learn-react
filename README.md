@@ -6,6 +6,10 @@ About: my react learning path and notes
 
 - [Create React App](./Notes/React/CreateReactApp.md)
 
+## React/JSX code style guide 
+
+https://github.com/airbnb/javascript/tree/master/react
+
 ## React
 
 - [Notes for React](./Notes/React/ReadMe.md)
