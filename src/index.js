@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import App from './examples/react-router/demo10'
+import App from './examples/react/07.01.hoc'
 
 import './common/style/common.css'
 
