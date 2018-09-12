@@ -1,0 +1,22 @@
+.PortalSample {
+  max-width: 468px;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 40px auto;
+  border: 2px solid #eee;
+  .dialog-header {
+    margin-bottom: 30px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .dialog-footer {
+    text-align: right;
+    .btn {
+      color: blue;
+      border-color: blue;
+      border-radius: 4px;
+    }
+  }
+}
