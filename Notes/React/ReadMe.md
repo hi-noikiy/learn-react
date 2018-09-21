@@ -126,8 +126,8 @@ class HelloWorld extends {
 
 Binding this in constructor function can avoid performance issue, compared with above two solutions.
 
-### 4.4 Use a function *setState** instead of an Object.
+### 4.4 Use a function *setState** instead of an Object
 
 ### 5. Utilize **prop-types**
 
-### 6. Using react-dev-tools for developing.
+### 6. Using react-dev-tools for developing
